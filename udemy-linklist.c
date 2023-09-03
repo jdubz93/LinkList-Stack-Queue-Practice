@@ -45,7 +45,7 @@ void InsertAtBeginning(ListNodePtr *head, char val)
     return;
   }
 
-  if (head == NULL)
+  if (*head == NULL)
   {
     new_node->data = val;
     new_node->next = NULL;
