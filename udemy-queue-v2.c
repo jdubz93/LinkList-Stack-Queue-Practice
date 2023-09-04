@@ -44,7 +44,7 @@ void EnQueue(queue_t *myqueue_, qnode_t *newnode)
     return;
   }
 
-  if (myqueue_->front == NULL)
+  if (myqueue_->rear == NULL)
   {
     myqueue_->front = newnode;
     myqueue_->rear = newnode;
@@ -68,11 +68,14 @@ qnode_t *DeQueue(queue_t *myqueue_)
 {
   if (myqueue_->front == NULL)
   {
-    printf("queue is empty\n");
+    // printf("queue is empty\n");
     return NULL;
   }
   qnode_t *dequeue_node = myqueue_->front;
   myqueue_->front = myqueue_->front->next;
+
+  if (myqueue_->front == NULL)
+    myqueue_->rear = NULL;
 
   return dequeue_node;
 }
