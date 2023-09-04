@@ -36,6 +36,34 @@ void PrintList(ListNodePtr head);
 bool Empty(ListNodePtr *head);
 
 // implementation
+void Insert(ListNodePtr *head, char val)
+{
+  ListNodePtr new_node = malloc(sizeof(node_t));
+  if (new_node == NULL)
+  {
+    perror("failed to allocate memory for new node");
+    return;
+  }
+
+  new_node->data = val;
+  new_node->next = NULL;
+
+  ListNodePtr prev = NULL;
+  ListNodePtr curr = *head;
+
+  // printf("curr = %c\n", curr->data);
+
+  while (curr != NULL && val < curr->data)
+  {
+    prev = curr;
+    curr = curr->next;
+  }
+
+  new_node->next = curr;
+  prev->next = new_node;
+  // printf("value of prev = %c\n", prev->data);
+}
+
 void InsertAtBeginning(ListNodePtr *head, char val)
 {
   ListNodePtr new_node = malloc(sizeof(node_t));
@@ -130,6 +158,35 @@ void DeleteAtEnd(ListNodePtr *head)
   // *head = prev;
 }
 
+void Delete(ListNodePtr *head, char val)
+{
+  if (*head == NULL)
+  {
+    printf("list is empty\n");
+    return;
+  }
+
+  ListNodePtr prev = NULL;
+  ListNodePtr curr = *head;
+
+  if (curr != NULL && curr->data == val)
+  {
+    *head = curr->next;
+    free(curr);
+  }
+
+  while (curr != NULL && curr->data != val)
+  {
+    prev = curr;
+    curr = curr->next;
+  }
+
+  prev->next = curr->next;
+  free(curr);
+
+  // printf("curr = %c\n", curr->data);
+}
+
 void PrintList(ListNodePtr head)
 {
   if (head == NULL)
@@ -182,7 +239,11 @@ int main(void)
     switch (choice)
     {
     case 1:
-      printf("not implemented\n");
+      // printf("not implemented\n");
+      printf("enter a char: ");
+      scanf(" %c", &input);
+      Insert(&startptr, input);
+      PrintList(startptr);
       break;
 
     case 2:
@@ -201,7 +262,11 @@ int main(void)
       break;
 
     case 4:
-      printf("not implemented\n");
+      // printf("not implemented\n");
+      printf("enter a char: ");
+      scanf(" %c", &input);
+      Delete(&startptr, input);
+      PrintList(startptr);
       break;
 
     case 5:
@@ -215,7 +280,6 @@ int main(void)
       break;
 
     case 7:
-      printf("not implemented\n");
       printf("exiting...\n");
       break;
 
