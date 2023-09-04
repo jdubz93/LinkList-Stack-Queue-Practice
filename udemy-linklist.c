@@ -32,6 +32,8 @@ void InsertAtEnd(ListNodePtr *head, char val);
 void DeleteAtBeginning(ListNodePtr *head);
 void DeleteAtEnd(ListNodePtr *head);
 void Delete(ListNodePtr *head, char val);
+void Search(ListNodePtr *head, char val);
+void Update(ListNodePtr *head, char val, char newval);
 void PrintList(ListNodePtr head);
 bool Empty(ListNodePtr *head);
 
@@ -187,6 +189,59 @@ void Delete(ListNodePtr *head, char val)
   // printf("curr = %c\n", curr->data);
 }
 
+void Search(ListNodePtr *head, char val)
+{
+  // todo
+  if (*head == NULL)
+  {
+    printf("list is empty\n");
+    return;
+  }
+
+  ListNodePtr curr = *head;
+  while (curr != NULL && val != curr->data)
+  {
+    curr = curr->next;
+  }
+
+  if (curr == NULL)
+  {
+    printf("%c not found\n", val);
+  }
+  else
+  {
+    printf("%c found\n", curr->data);
+  }
+}
+
+void Update(ListNodePtr *head, char val, char newval)
+{
+  if (*head == NULL)
+  {
+    printf("list is empty\n");
+    return;
+  }
+
+  ListNodePtr prev = NULL;
+  ListNodePtr curr = *head;
+
+  while (curr != NULL && val != curr->data)
+  {
+    prev = curr;
+    curr = curr->next;
+  }
+
+  if (curr->data != val)
+  {
+    printf("%c not found", val);
+    return;
+  }
+  else
+  {
+    curr->data = newval;
+  }
+}
+
 void PrintList(ListNodePtr head)
 {
   if (head == NULL)
@@ -230,9 +285,11 @@ int main(void)
          "4) to delete an element at value index.\n"
          "5) to delete an element at beginning.\n"
          "6) to delete an element at end.\n"
-         "7) to exit\n");
+         "7) to search for an element in list\n"
+         "8) to update an element value in list\n"
+         "9) to exit\n");
 
-  while (choice != 7)
+  while (choice != 9)
   {
     printf("Enter choice: ");
     scanf("%d", &choice);
@@ -280,6 +337,22 @@ int main(void)
       break;
 
     case 7:
+      printf("enter a char: ");
+      scanf(" %c", &input);
+      Search(&startptr, input);
+      break;
+
+    case 8:
+      printf("char to update: ");
+      scanf(" %c", &input);
+      printf("new char: ");
+      char newval;
+      scanf(" %c", &newval);
+      Update(&startptr, input, newval);
+      PrintList(startptr);
+      break;
+
+    case 9:
       printf("exiting...\n");
       break;
 
