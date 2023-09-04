@@ -33,8 +33,8 @@ queue_t *CreateQueue(qnode_t *node)
 
 // FIFO
 /*
- when you add (enqueue) a new node, it gets placed at the rear.
- When you remove (dequeue) a node, it gets removed from the front.
+ when I add (enqueue) a new node, it gets placed at the rear.
+ When I remove (dequeue) a node, it gets removed from the front.
 */
 void EnQueue(queue_t *myqueue_, qnode_t *newnode)
 {
@@ -62,7 +62,7 @@ void EnQueue(queue_t *myqueue_, qnode_t *newnode)
 }
 
 /*
- When you remove (dequeue) a node, it gets removed from the front.
+ When I remove (dequeue) a node, it gets removed from the front.
 */
 qnode_t *DeQueue(queue_t *myqueue_)
 {
