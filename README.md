@@ -41,3 +41,40 @@ Enter choice: 9
 exiting...
 
 ```
+
+### stack
+
+```bash
+
+enter a choice: 1
+enter a val: 3
+-------------
+3
+-------------
+4
+-------------
+5
+-------------
+enter a choice: 2
+-------------
+4
+-------------
+5
+-------------
+enter a choice: 2
+-------------
+5
+-------------
+enter a choice: 2
+-------------
+stack empty
+-------------
+enter a choice: 2
+-------------
+stack empty
+-------------
+enter a choice: 3
+exiting...
+
+
+```
