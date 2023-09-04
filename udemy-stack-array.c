@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #define MAX_SIZE (5)
 
@@ -15,19 +16,35 @@ typedef struct Stack
 void push(stack_t *head, int val);
 int pop(stack_t *head);
 void display(stack_t *head);
-int empty(stack_t *head);
+void PrintMenu();
+// int empty(stack_t *head);
 
+// void push(stack_t *head, int val)
+// {
+//   if ((*head).top == (MAX_SIZE - 1))
+//   {
+//     printf("stack is full\n");
+//     return;
+//   }
+//   else
+//   {
+//     (*head).top = (*head).top + 1;
+//     (*head).stk[(*head).top] = val;
+//   }
+//   return;
+// }
 void push(stack_t *head, int val)
 {
-  if ((*head).top == (MAX_SIZE - 1))
+  if (head->top == (MAX_SIZE - 1))
   {
     printf("stack is full\n");
     return;
   }
   else
   {
-    (*head).top = (*head).top + 1;
-    (*head).stk[(*head).top] = val;
+    head->top = head->top + 1;
+    head->stk[head->top] = val;
+    display(head);
   }
 
   return;
@@ -35,22 +52,23 @@ void push(stack_t *head, int val)
 
 int pop(stack_t *head)
 {
-  if ((*head).top == -1)
+  if (head->top == -1)
   {
-    // printf("stack is empty\n");
-    return (*head).top;
+    // return head->top;
+    printf("error: cannot pop from an empty stack!\n");
+    return head->top;
   }
   else
   {
-    int num = (*head).stk[(*head).top];
-    (*head).top = (*head).top - 1;
+    int num = head->stk[head->top];
+    head->top = head->top - 1;
     return num;
   }
 }
 
 void display(stack_t *head)
 {
-  if ((*head).top == -1)
+  if (head->top == -1)
   {
     printf("-------------\n");
     printf("stack empty\n");
@@ -61,11 +79,20 @@ void display(stack_t *head)
   int i = 0;
   printf("-------------\n");
 
-  for (i = (*head).top; i >= 0; i--)
+  for (i = head->top; i >= 0; i--)
   {
-    printf("%d\n", (*head).stk[i]);
+    printf("%d\n", head->stk[i]);
     printf("-------------\n");
   }
+}
+
+void PrintMenu()
+{
+  printf("===============================\n");
+  printf("    1   -->   PUSH      \n");
+  printf("    2   -->   POP       \n");
+  printf("    3   -->   EXIT      \n");
+  printf("===============================\n");
 }
 
 int main(void)
@@ -75,13 +102,9 @@ int main(void)
   stack_t start;
   start.top = -1;
 
-  printf("-------------------------\n");
-  printf("    1   -->   PUSH      \n");
-  printf("    2   -->   POP       \n");
-  printf("    3   -->   EXIT      \n");
-  printf("-------------------------\n");
-  while (choice != 3)
+  while (true)
   {
+    PrintMenu();
     printf("enter a choice: ");
     scanf(" %d", &choice);
     switch (choice)
@@ -90,15 +113,15 @@ int main(void)
       printf("enter a val: ");
       scanf(" %d", &userinput);
       push(&start, userinput);
-      display(&start);
       break;
     case 2:
-      pop(&start);
+      printf("\n");
+      printf("value popped: %d\n\n", pop(&start));
       display(&start);
       break;
     case 3:
       printf("exiting...\n");
-      break;
+      return 0;
     }
   }
 
