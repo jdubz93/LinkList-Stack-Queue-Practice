@@ -78,3 +78,66 @@ exiting...
 
 
 ```
+
+### circular queue array
+
+```bash
+--------
+5
+--------
+===============================
+    1   -->   ENQUEUE
+    2   -->   DEQUEUE
+    3   -->   EXIT
+===============================
+enter a choice: 4
+debug print indexes:
+front_idx: 4
+rear_idx: 4
+===============================
+    1   -->   ENQUEUE
+    2   -->   DEQUEUE
+    3   -->   EXIT
+===============================
+enter a choice: 4
+debug print indexes:
+front_idx: 4
+rear_idx: 4
+===============================
+    1   -->   ENQUEUE
+    2   -->   DEQUEUE
+    3   -->   EXIT
+===============================
+enter a choice: 2
+
+Key dequeue'd: 5
+
+queue is empty
+===============================
+    1   -->   ENQUEUE
+    2   -->   DEQUEUE
+    3   -->   EXIT
+===============================
+enter a choice: 4
+debug print indexes:
+front_idx: -1
+rear_idx: -1
+===============================
+    1   -->   ENQUEUE
+    2   -->   DEQUEUE
+    3   -->   EXIT
+===============================
+enter a choice: 1
+Insert key into queue: 2
+--------
+2
+--------
+===============================
+    1   -->   ENQUEUE
+    2   -->   DEQUEUE
+    3   -->   EXIT
+===============================
+enter a choice:
+
+
+```
